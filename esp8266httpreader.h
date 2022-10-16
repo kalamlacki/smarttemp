@@ -1,0 +1,1 @@
+ double readEsp8266Ds18b20Temp(const char* url);

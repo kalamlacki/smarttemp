@@ -1,0 +1,19 @@
+HEADERS = curlcommon.h esp8266httpreader.h dao.h sp1101w.h hs110.h
+OBJECTS = curlcommon.o esp8266httpreader.o dao.o sp1101w.o main.o hs110.o
+
+CPPFLAGS=$(shell pkg-config --cflags libcurl json-c libxml-2.0 libmariadb libconfuse)
+LIBS=$(shell pkg-config --libs libcurl json-c libxml-2.0 libmariadb libconfuse)
+
+default: smarttemp
+
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+smarttemp: $(OBJECTS)
+	$(CXX) $(LDFLAGS) $(LIBS) $(OBJECTS) -o $@
+
+clean:
+	rm -f $(OBJECTS)
+	rm -f smarttemp
+
+install: smarttemp
