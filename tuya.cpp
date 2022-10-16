@@ -32,9 +32,9 @@ int runInFork(int* mpipe, const char* theScript) {
        Py_Initialize();
        PyRun_SimpleString(theScript);
        if (Py_FinalizeEx() < 0) {
-          return -1;
+          exit( -1);
        }
-       exit(-1);
+       exit(1);
     }
     return 0;
 }
@@ -59,7 +59,7 @@ int readTuyaStatus(const char* url, const char* credentials) {
     int mpipe[2];
     if(pipe(mpipe) == -1) {
       perror("Pipe1  failed");
-      exit(1);
+      throw "Pipe1 failed";
     }
     runInFork(mpipe, tuya_buff);
     FILE* fpyout = fdopen(mpipe[0], "rt");
