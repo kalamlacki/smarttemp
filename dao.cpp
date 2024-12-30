@@ -152,7 +152,7 @@ GlobalConfig** getGlobalSettings(int *size){
 		globalConfig[i]->serialNumber = row[0];
 		globalConfig[i]->url = row[1];
 		globalConfig[i]->mac = row[2] == NULL ? "0" : row[2];
-		globalConfig[i]->smartPlugUrl = row[3] == NULL ? ")" : row[3];
+		globalConfig[i]->smartPlugUrl = row[3] == NULL ? "0" : row[3];
 		globalConfig[i]->smartPlugUserPass = row[4] == NULL ? "0" : row[4];
 		globalConfig[i]->smartPlugMac = row[5] == NULL ? "0": row[5];
 		globalConfig[i]->enabled = atoi( row[6] );
